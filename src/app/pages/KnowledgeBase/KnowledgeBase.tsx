@@ -7,6 +7,7 @@ import AnimateHeight from 'react-animate-height';
 import { setPageTitle } from '../../../_theme/themeConfigSlice';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
+import IconEdit from '../../../_theme/components/Icon/IconEdit';
 
 const initialData = {
     name: 'The Fine Restaurant',
@@ -42,6 +43,8 @@ const KnowledgeBase = () => {
     const [editRestaurant, setEditRestaurant] = useState(false);
 
     const [active, setActive] = useState<string>('1');
+    const [editingQuestionIndex, setEditingQuestionIndex] = useState<number | null>(null);
+    const [questionDraft, setQuestionDraft] = useState('');
 
     const togglePara = (value: string) => {
         setActive((oldValue) => {
@@ -53,11 +56,26 @@ const KnowledgeBase = () => {
         setData((prev) => ({ ...prev, [field]: value }));
     };
 
-    const handleAIChange = (field, value) => {
+    const startEditingQuestion = (index) => {
+        setEditingQuestionIndex(index);
+        setQuestionDraft(data.aiSettings.questions[index]);
+    };
+
+    const saveQuestionEdit = () => {
+        const updatedQuestions = [...data.aiSettings.questions];
+        updatedQuestions[editingQuestionIndex] = questionDraft;
+
         setData((prev) => ({
             ...prev,
-            aiSettings: { ...prev.aiSettings, [field]: value },
+            aiSettings: {
+                ...prev.aiSettings,
+                questions: updatedQuestions,
+            },
         }));
+
+        toast.success('Question updated!');
+        setEditingQuestionIndex(null);
+        setQuestionDraft('');
     };
 
     const toggleEdit = (type) => {
@@ -163,8 +181,27 @@ const KnowledgeBase = () => {
                         <ul className="space-y-2 mt-2">
                             {data.aiSettings.questions.map((q, i) => (
                                 <li key={i} className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-md">
-                                    <span className="text-sm text-gray-900 dark:text-white">{q}</span>
-                                    <button className="text-blue-600 dark:text-blue-400">✏️</button>
+                                    {editingQuestionIndex === i ? (
+                                        <input
+                                            type="text"
+                                            value={questionDraft}
+                                            onChange={(e) => setQuestionDraft(e.target.value)}
+                                            onBlur={saveQuestionEdit}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') saveQuestionEdit();
+                                                if (e.key === 'Escape') setEditingQuestionIndex(null);
+                                            }}
+                                            className="w-full mr-2 px-2 py-1 rounded bg-white dark:bg-gray-700 text-sm text-gray-900 dark:text-white"
+                                            autoFocus
+                                        />
+                                    ) : (
+                                        <>
+                                            <span className="text-sm text-gray-900 dark:text-white">{q}</span>
+                                            <button type="button" className="text-blue-600 dark:text-blue-400 ml-2" onClick={() => startEditingQuestion(i)}>
+                                                <IconEdit />
+                                            </button>
+                                        </>
+                                    )}
                                 </li>
                             ))}
                         </ul>
