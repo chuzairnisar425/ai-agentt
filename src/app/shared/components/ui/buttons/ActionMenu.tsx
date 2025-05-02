@@ -28,7 +28,7 @@ function ActionMenu({ view, edit, remove, editPermission, deletePermission }: IM
                         e.stopPropagation();
                         view();
                     }}
-                    icon={<IconEye />}
+                    // icon={<IconEye />}
                 >
                     View
                 </Menu.Item>
@@ -39,7 +39,7 @@ function ActionMenu({ view, edit, remove, editPermission, deletePermission }: IM
                             e.stopPropagation();
                             edit();
                         }}
-                        icon={<IconPencil />}
+                        // icon={<IconPencil />}
                     >
                         Edit
                     </Menu.Item>
@@ -52,7 +52,7 @@ function ActionMenu({ view, edit, remove, editPermission, deletePermission }: IM
                             remove();
                         }}
                         color="red"
-                        icon={<IconTrash />}
+                        // icon={<IconTrash />}
                     >
                         Delete
                     </Menu.Item>

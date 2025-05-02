@@ -3,7 +3,7 @@ import { useState, Fragment, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import EditModal from './EditModal';
-import Alert from '../../../features/Authentication/components/Alert';
+// import Alert from '../../../features/Authentication/components/Alert';
 import IconUserPlus from '../../../../_theme/components/Icon/IconUserPlus';
 import IconSearch from '../../../../_theme/components/Icon/IconSearch';
 import { setPageTitle } from '../../../../_theme/themeConfigSlice';
@@ -149,9 +149,7 @@ const CRUD = () => {
         <div className="">
             <div className="">
                 <div className="p-6 border-b">
-                    <div className="">
-                        <Alert variant="success" message="User has been saved successfully." title="Success!" />
-                    </div>
+                    <div className="">{/* <Alert variant="success" message="User has been saved successfully." title="Success!" /> */}</div>
                     <div className="flex justify-between">
                         <h1 className="font-bold text-lg">{feature}</h1>
                         <button onClick={() => editUser()} className="bg-brand-600 text-white p-2 rounded-lg text-sm">

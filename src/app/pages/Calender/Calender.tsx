@@ -304,7 +304,7 @@ const Calender = () => {
                         leave-from="opacity-100"
                         leave-to="opacity-0"
                     >
-                        <Dialog.Overlay className="fixed inset-0 bg-[black]/60" />
+                        <div className="fixed inset-0 bg-[black]/60" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
