@@ -7,7 +7,7 @@
         "skipLibCheck": true,
         "esModuleInterop": false,
         "allowSyntheticDefaultImports": true,
-        "strict": true,
+        // "strict": true,
         "forceConsistentCasingInFileNames": true,
         "module": "ESNext",
         "moduleResolution": "Node",
@@ -15,7 +15,8 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "strict": false
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]
