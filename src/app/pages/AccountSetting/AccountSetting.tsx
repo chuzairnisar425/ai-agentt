@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-// import { setPageTitle } from '../../store/themeConfigSlice';
+import { useEffect, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../_theme/themeConfigSlice';
 import IconHome from '../../../_theme/components/Icon/IconHome';
-import IconDollarSignCircle from '../../../_theme/components/Icon/IconDollarSignCircle';
-import IconUser from '../../../_theme/components/Icon/IconUser';
-import IconPhone from '../../../_theme/components/Icon/IconPhone';
-import IconLinkedin from '../../../_theme/components/Icon/IconLinkedin';
-import IconTwitter from '../../../_theme/components/Icon/IconTwitter';
-import IconFacebook from '../../../_theme/components/Icon/IconFacebook';
-import IconGithub from '../../../_theme/components/Icon/IconGithub';
 
 const AccountSetting = () => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(setPageTitle('Account Setting'));
-    });
-    const [tabs, setTabs] = useState<string>('home');
-    const toggleTabs = (name: string) => {
+    }, [dispatch]);
+
+    const [tabs, setTabs] = useState<'home'>('home');
+
+    const toggleTabs = (name: 'home') => {
         setTabs(name);
+    };
+
+    const handleRestaurantSettingsSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // You can add logic to save form data here
+        console.log('Restaurant settings saved.');
     };
 
     return (
@@ -41,6 +41,7 @@ const AccountSetting = () => {
                         </li>
                     </ul>
                 </div>
+
                 {tabs === 'home' && (
                     <div className="space-y-6">
                         {/* Profile Form */}
@@ -71,6 +72,7 @@ const AccountSetting = () => {
                                         </label>
                                         <input
                                             id={id}
+                                            name={id}
                                             type={id === 'email' ? 'email' : 'text'}
                                             placeholder={placeholder}
                                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
@@ -81,14 +83,20 @@ const AccountSetting = () => {
                         </form>
 
                         {/* Restaurant Settings */}
-                        <form className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 bg-white dark:bg-black">
+                        <form onSubmit={handleRestaurantSettingsSubmit} className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 bg-white dark:bg-black">
                             <h6 className="text-lg font-bold mb-5">Restaurant Settings</h6>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 {/* Cuisine Type */}
                                 <div>
-                                    <label className="block mb-1 text-sm font-medium">Cuisine Type</label>
-                                    <select className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                    <label htmlFor="cuisineType" className="block mb-1 text-sm font-medium">
+                                        Cuisine Type
+                                    </label>
+                                    <select
+                                        id="cuisineType"
+                                        name="cuisineType"
+                                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                    >
                                         <option>Italian</option>
                                         <option>Chinese</option>
                                         <option>Mexican</option>
@@ -99,9 +107,13 @@ const AccountSetting = () => {
 
                                 {/* Reservation Policies */}
                                 <div>
-                                    <label className="block mb-1 text-sm font-medium">Reservation Policies</label>
+                                    <label htmlFor="reservationPolicies" className="block mb-1 text-sm font-medium">
+                                        Reservation Policies
+                                    </label>
                                     <textarea
-                                        rows="3"
+                                        id="reservationPolicies"
+                                        name="reservationPolicies"
+                                        rows={3}
                                         defaultValue="24-hour cancellation policy. Large groups require deposit."
                                         className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                                     />
@@ -109,12 +121,20 @@ const AccountSetting = () => {
 
                                 {/* Special Instructions */}
                                 <div>
-                                    <label className="block mb-1 text-sm font-medium">Special Instructions</label>
-                                    <textarea rows="3" className="form-input w-full" defaultValue="We offer valet parking. Please inform us of any dietary restrictions."></textarea>
+                                    <label htmlFor="specialInstructions" className="block mb-1 text-sm font-medium">
+                                        Special Instructions
+                                    </label>
+                                    <textarea
+                                        id="specialInstructions"
+                                        name="specialInstructions"
+                                        rows={3}
+                                        defaultValue="We offer valet parking. Please inform us of any dietary restrictions."
+                                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                    />
                                 </div>
 
                                 {/* Save Button */}
-                                <div className="flex items-center justify-center ">
+                                <div className="flex items-center justify-center">
                                     <button type="submit" className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-xl w-full">
                                         Save Changes
                                     </button>
