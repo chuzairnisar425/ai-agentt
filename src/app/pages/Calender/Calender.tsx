@@ -23,131 +23,143 @@ const Calender = () => {
         // return dt.getMonth() < 10 ? '0' + month : month;
     };
 
-    const [events, setEvents] = useState<any>([
+    const [reservations, setReservations] = useState<any>([
         {
             id: 1,
-            title: 'All Day Event',
+            name: 'All Day reservation',
             start: now.getFullYear() + '-' + getMonth(now) + '-01T14:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-02T14:30:00',
-            className: 'danger',
+
             description: 'Aenean fermentum quam vel sapien rutrum cursus. Vestibulum imperdiet finibus odio, nec tincidunt felis facilisis eu.',
         },
         {
             id: 2,
-            title: 'Site Visit',
+            name: 'Site Visit',
             start: now.getFullYear() + '-' + getMonth(now) + '-07T19:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-08T14:30:00',
-            className: 'primary',
+
             description: 'Etiam a odio eget enim aliquet laoreet. Vivamus auctor nunc ultrices varius lobortis.',
         },
         {
             id: 3,
-            title: 'Product Lunching Event',
+            name: 'Product Lunching reservation',
             start: now.getFullYear() + '-' + getMonth(now) + '-17T14:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-18T14:30:00',
-            className: 'info',
+
             description: 'Proin et consectetur nibh. Mauris et mollis purus. Ut nec tincidunt lacus. Nam at rutrum justo, vitae egestas dolor.',
         },
         {
             id: 4,
-            title: 'Meeting',
+            name: 'Meeting',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T10:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T10:30:00',
-            className: 'danger',
+
             description: 'Mauris ut mauris aliquam, fringilla sapien et, dignissim nisl. Pellentesque ornare velit non mollis fringilla.',
         },
         {
             id: 5,
-            title: 'Lunch',
+            name: 'Lunch',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T15:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T15:00:00',
-            className: 'info',
+
             description: 'Integer fermentum bibendum elit in egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         },
         {
             id: 6,
-            title: 'Conference',
+            name: 'Conference',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T21:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T21:30:00',
-            className: 'success',
+
             description:
                 'Curabitur facilisis vel elit sed dapibus. Nunc sagittis ex nec ante facilisis, sed sodales purus rhoncus. Donec est sapien, porttitor et feugiat sed, eleifend quis sapien. Sed sit amet maximus dolor.',
         },
         {
             id: 7,
-            title: 'Happy Hour',
+            name: 'Happy Hour',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T05:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T05:30:00',
-            className: 'info',
+
             description: ' odio lectus, porttitor molestie scelerisque blandit, hendrerit sed ex. Aenean malesuada iaculis erat, vitae blandit nisl accumsan ut.',
         },
         {
             id: 8,
-            title: 'Dinner',
+            name: 'Dinner',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T20:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T20:00:00',
-            className: 'danger',
+
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 9,
-            title: 'Birthday Party',
+            name: 'Birthday Party',
             start: now.getFullYear() + '-' + getMonth(now) + '-27T20:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-28T20:00:00',
-            className: 'success',
+
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 10,
-            title: 'New Talent Event',
+            name: 'New Talent reservation',
             start: now.getFullYear() + '-' + getMonth(now, 1) + '-24T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, 1) + '-27T22:20:20',
-            className: 'danger',
+
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 11,
-            title: 'Other new',
+            name: 'Other new',
             start: now.getFullYear() + '-' + getMonth(now, -1) + '-13T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, -1) + '-16T22:20:20',
-            className: 'primary',
+
             description: 'Pellentesque ut convallis velit. Sed purus urna, aliquam et pharetra ut, efficitur id mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 13,
-            title: 'Upcoming Event',
+            name: 'Upcoming reservation',
             start: now.getFullYear() + '-' + getMonth(now, 1) + '-15T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, 1) + '-18T22:20:20',
-            className: 'primary',
+
             description: 'Pellentesque ut convallis velit. Sed purus urna, aliquam et pharetra ut, efficitur id mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
     ]);
-    const [isAddEventModal, setIsAddEventModal] = useState(false);
+    const [isAddReservationModal, setIsAddReservationModal] = useState(false);
     const [minStartDate, setMinStartDate] = useState<any>('');
     const [minEndDate, setMinEndDate] = useState<any>('');
-    const defaultParams = { id: null, title: '', start: '', end: '', description: '', type: 'primary' };
+    const defaultParams = {
+        id: '',
+        name: '',
+        phone: '',
+        partySize: '',
+        start: '',
+        end: '',
+        description: '',
+    };
+
     const [params, setParams] = useState<any>(defaultParams);
+
     const dateFormat = (dt: any) => {
         dt = new Date(dt);
         const month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : dt.getMonth() + 1;
         const date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
         const hours = dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours();
         const mins = dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes();
-        dt = dt.getFullYear() + '-' + month + '-' + date + 'T' + hours + ':' + mins;
-        return dt;
+        return `${dt.getFullYear()}-${month}-${date}T${hours}:${mins}`;
     };
-    const editEvent = (data: any = null) => {
-        let params = JSON.parse(JSON.stringify(defaultParams));
-        setParams(params);
+
+    const editReservation = (data: any = null) => {
+        const reset = JSON.parse(JSON.stringify(defaultParams));
+        setParams(reset);
+
         if (data) {
-            let obj = JSON.parse(JSON.stringify(data.event));
+            const obj = JSON.parse(JSON.stringify(data.reservation));
             setParams({
-                id: obj.id ? obj.id : null,
-                title: obj.title ? obj.title : null,
+                id: obj.id || '',
+                name: obj.name || '',
+                phone: obj.phone || '',
+                partySize: obj.partySize || '',
                 start: dateFormat(obj.start),
                 end: dateFormat(obj.end),
-                type: obj.classNames ? obj.classNames[0] : 'primary',
-                description: obj.extendedProps ? obj.extendedProps.description : '',
+                description: obj.extendedProps?.description || '',
             });
             setMinStartDate(new Date());
             setMinEndDate(dateFormat(obj.start));
@@ -155,77 +167,75 @@ const Calender = () => {
             setMinStartDate(new Date());
             setMinEndDate(new Date());
         }
-        setIsAddEventModal(true);
+
+        setIsAddReservationModal(true);
     };
+
     const editDate = (data: any) => {
-        let obj = {
-            event: {
+        editReservation({
+            reservation: {
                 start: data.start,
                 end: data.end,
             },
-        };
-        editEvent(obj);
+        });
     };
 
-    const saveEvent = () => {
-        if (!params.title) {
-            return true;
+    const saveReservation = () => {
+        if (!params.start || !params.end || !params.name || !params.partySize) {
+            showMessage('Please fill in all required fields.');
+            return;
         }
-        if (!params.start) {
-            return true;
-        }
-        if (!params.end) {
-            return true;
-        }
-        if (params.id) {
-            //update event
-            let dataevent = events || [];
-            let event: any = dataevent.find((d: any) => d.id === parseInt(params.id));
-            event.title = params.title;
-            event.start = params.start;
-            event.end = params.end;
-            event.description = params.description;
-            event.className = params.type;
 
-            setEvents([]);
+        const updatedReservations = [...reservations];
+
+        if (params.id) {
+            const index = updatedReservations.findIndex((r) => r.id === parseInt(params.id));
+            if (index > -1) {
+                updatedReservations[index] = {
+                    ...updatedReservations[index],
+                    name: params.name,
+                    phone: params.phone,
+                    partySize: params.partySize,
+                    start: params.start,
+                    end: params.end,
+                    description: params.description,
+                };
+            }
+            setReservations([]);
             setTimeout(() => {
-                setEvents(dataevent);
+                setReservations(updatedReservations);
             });
         } else {
-            //add event
-            let maxEventId = 0;
-            if (events) {
-                maxEventId = events.reduce((max: number, character: any) => (character.id > max ? character.id : max), events[0].id);
-            }
-            maxEventId = maxEventId + 1;
-            let event = {
-                id: maxEventId,
-                title: params.title,
+            const maxId = reservations.length > 0 ? Math.max(...reservations.map((r) => r.id)) : 0;
+            const newReservation = {
+                id: maxId + 1,
+                name: params.name,
+                phone: params.phone,
+                partySize: params.partySize,
                 start: params.start,
                 end: params.end,
                 description: params.description,
-                className: params.type,
             };
-            let dataevent = events || [];
-            dataevent = dataevent.concat([event]);
-            setTimeout(() => {
-                setEvents(dataevent);
-            });
+            setReservations([...reservations, newReservation]);
         }
-        showMessage('Event has been saved successfully.');
-        setIsAddEventModal(false);
+
+        showMessage('Reservation has been saved successfully.');
+        setIsAddReservationModal(false);
     };
-    const startDateChange = (event: any) => {
-        const dateStr = event.target.value;
+
+    const startDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const dateStr = e.target.value;
         if (dateStr) {
             setMinEndDate(dateFormat(dateStr));
             setParams({ ...params, start: dateStr, end: '' });
         }
     };
-    const changeValue = (e: any) => {
-        const { value, id } = e.target;
-        setParams({ ...params, [id]: value });
+
+    const changeValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setParams({ ...params, [name]: value });
     };
+
     const showMessage = (msg = '', type = 'success') => {
         const toast: any = Swal.mixin({
             toast: true,
@@ -247,28 +257,10 @@ const Calender = () => {
                 <div className="mb-4 flex items-center sm:flex-row flex-col sm:justify-between justify-center">
                     <div className="sm:mb-0 mb-4">
                         <div className="text-lg font-semibold ltr:sm:text-left rtl:sm:text-right text-center">Calendar</div>
-                        <div className="flex items-center mt-2 flex-wrap sm:justify-start justify-center">
-                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
-                                <div>Work</div>
-                            </div>
-                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-info"></div>
-                                <div>Travel</div>
-                            </div>
-                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-success"></div>
-                                <div>Personal</div>
-                            </div>
-                            <div className="flex items-center">
-                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"></div>
-                                <div>Important</div>
-                            </div>
-                        </div>
                     </div>
-                    <button type="button" className="btn btn-primary" onClick={() => editEvent()}>
+                    <button type="button" className="btn btn-primary" onClick={() => editReservation()}>
                         <IconPlus className="ltr:mr-2 rtl:ml-2" />
-                        Create Event
+                        Create Reservation
                     </button>
                 </div>
                 <div className="calendar-wrapper">
@@ -284,16 +276,16 @@ const Calender = () => {
                         dayMaxEvents={true}
                         selectable={true}
                         droppable={true}
-                        eventClick={(event: any) => editEvent(event)}
-                        select={(event: any) => editDate(event)}
-                        events={events}
+                        eventClick={(reservation: any) => editReservation(reservation)}
+                        select={(reservation: any) => editDate(reservation)}
+                        events={reservations}
                     />
                 </div>
             </div>
 
-            {/* add event modal */}
-            <Transition appear show={isAddEventModal} as={Fragment}>
-                <Dialog as="div" onClose={() => setIsAddEventModal(false)} open={isAddEventModal} className="relative z-[51]">
+            {/* add reservation modal */}
+            <Transition appear show={isAddReservationModal} as={Fragment}>
+                <Dialog as="div" onClose={() => setIsAddReservationModal(false)} open={isAddReservationModal} className="relative z-[51]">
                     <Transition.Child
                         as={Fragment}
                         enter="duration-300 ease-out"
@@ -321,126 +313,102 @@ const Calender = () => {
                                     <button
                                         type="button"
                                         className="absolute top-4 ltr:right-4 rtl:left-4 text-gray-400 hover:text-gray-800 dark:hover:text-gray-600 outline-none"
-                                        onClick={() => setIsAddEventModal(false)}
+                                        onClick={() => setIsAddReservationModal(false)}
                                     >
                                         <IconX />
                                     </button>
                                     <div className="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                        {params.id ? 'Edit Event' : 'Add Event'}
+                                        {params.id ? 'Edit Reservation' : 'Add Reservation'}
                                     </div>
                                     <div className="p-5">
                                         <form className="space-y-5">
                                             <div>
-                                                <label htmlFor="title">Event Title :</label>
+                                                <label htmlFor="name">Name:</label>
                                                 <input
-                                                    id="title"
+                                                    id="name"
                                                     type="text"
-                                                    name="title"
+                                                    name="name"
                                                     className="form-input"
-                                                    placeholder="Enter Event Title"
-                                                    value={params.title || ''}
+                                                    placeholder="Customer name"
+                                                    value={params.name || ''}
                                                     onChange={(e) => changeValue(e)}
                                                     required
                                                 />
-                                                <div className="text-danger mt-2" id="titleErr"></div>
                                             </div>
 
                                             <div>
-                                                <label htmlFor="dateStart">From :</label>
+                                                <label htmlFor="phone">Phone:</label>
+                                                <input
+                                                    id="phone"
+                                                    type="tel"
+                                                    name="phone"
+                                                    className="form-input"
+                                                    placeholder="+1 (555) 123-4567"
+                                                    value={params.phone || ''}
+                                                    onChange={(e) => changeValue(e)}
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <label htmlFor="partySize">Party Size:</label>
+                                                <input
+                                                    id="partySize"
+                                                    type="number"
+                                                    name="partySize"
+                                                    className="form-input"
+                                                    placeholder="e.g., 4"
+                                                    min={1}
+                                                    value={params.partySize || ''}
+                                                    onChange={(e) => changeValue(e)}
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <label htmlFor="start">Date & Time:</label>
                                                 <input
                                                     id="start"
                                                     type="datetime-local"
                                                     name="start"
                                                     className="form-input"
-                                                    placeholder="Event Start Date"
                                                     value={params.start || ''}
                                                     min={minStartDate}
-                                                    onChange={(event: any) => startDateChange(event)}
+                                                    onChange={(e) => startDateChange(e)}
                                                     required
                                                 />
-                                                <div className="text-danger mt-2" id="startDateErr"></div>
                                             </div>
+
                                             <div>
-                                                <label htmlFor="dateEnd">To :</label>
+                                                <label htmlFor="end">To:</label>
                                                 <input
                                                     id="end"
                                                     type="datetime-local"
                                                     name="end"
                                                     className="form-input"
-                                                    placeholder="Event End Date"
                                                     value={params.end || ''}
                                                     min={minEndDate}
                                                     onChange={(e) => changeValue(e)}
                                                     required
                                                 />
-                                                <div className="text-danger mt-2" id="endDateErr"></div>
                                             </div>
+
                                             <div>
-                                                <label htmlFor="description">Event Description :</label>
+                                                <label htmlFor="description">Reservation Notes:</label>
                                                 <textarea
                                                     id="description"
                                                     name="description"
-                                                    className="form-textarea min-h-[130px]"
-                                                    placeholder="Enter Event Description"
+                                                    className="form-textarea min-h-[100px]"
+                                                    placeholder="e.g., Window seat preferred"
                                                     value={params.description || ''}
                                                     onChange={(e) => changeValue(e)}
-                                                ></textarea>
+                                                />
                                             </div>
-                                            <div>
-                                                <label>Badge:</label>
-                                                <div className="mt-3">
-                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                        <input
-                                                            type="radio"
-                                                            className="form-radio"
-                                                            name="type"
-                                                            value="primary"
-                                                            checked={params.type === 'primary'}
-                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
-                                                        />
-                                                        <span className="ltr:pl-2 rtl:pr-2">Work</span>
-                                                    </label>
-                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                        <input
-                                                            type="radio"
-                                                            className="form-radio text-info"
-                                                            name="type"
-                                                            value="info"
-                                                            checked={params.type === 'info'}
-                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
-                                                        />
-                                                        <span className="ltr:pl-2 rtl:pr-2">Travel</span>
-                                                    </label>
-                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                        <input
-                                                            type="radio"
-                                                            className="form-radio text-success"
-                                                            name="type"
-                                                            value="success"
-                                                            checked={params.type === 'success'}
-                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
-                                                        />
-                                                        <span className="ltr:pl-2 rtl:pr-2">Personal</span>
-                                                    </label>
-                                                    <label className="inline-flex cursor-pointer">
-                                                        <input
-                                                            type="radio"
-                                                            className="form-radio text-danger"
-                                                            name="type"
-                                                            value="danger"
-                                                            checked={params.type === 'danger'}
-                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
-                                                        />
-                                                        <span className="ltr:pl-2 rtl:pr-2">Important</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div className="flex justify-end items-center !mt-8">
-                                                <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddEventModal(false)}>
+
+                                            <div className="flex justify-end items-center mt-8">
+                                                <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddReservationModal(false)}>
                                                     Cancel
                                                 </button>
-                                                <button type="button" onClick={() => saveEvent()} className="btn btn-primary ltr:ml-4 rtl:mr-4">
-                                                    {params.id ? 'Update Event' : 'Create Event'}
+                                                <button type="button" onClick={() => saveReservation()} className="btn btn-primary ml-4">
+                                                    {params.id ? 'Update Reservation' : 'Create Reservation'}
                                                 </button>
                                             </div>
                                         </form>
