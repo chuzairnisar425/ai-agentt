@@ -26,140 +26,128 @@ const Calender = () => {
     const [reservations, setReservations] = useState<any>([
         {
             id: 1,
-            name: 'All Day reservation',
+            title: 'All Day Event',
             start: now.getFullYear() + '-' + getMonth(now) + '-01T14:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-02T14:30:00',
-
+            className: 'danger',
             description: 'Aenean fermentum quam vel sapien rutrum cursus. Vestibulum imperdiet finibus odio, nec tincidunt felis facilisis eu.',
         },
         {
             id: 2,
-            name: 'Site Visit',
+            title: 'Site Visit',
             start: now.getFullYear() + '-' + getMonth(now) + '-07T19:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-08T14:30:00',
-
+            className: 'primary',
             description: 'Etiam a odio eget enim aliquet laoreet. Vivamus auctor nunc ultrices varius lobortis.',
         },
         {
             id: 3,
-            name: 'Product Lunching reservation',
+            title: 'Product Lunching Event',
             start: now.getFullYear() + '-' + getMonth(now) + '-17T14:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-18T14:30:00',
-
+            className: 'info',
             description: 'Proin et consectetur nibh. Mauris et mollis purus. Ut nec tincidunt lacus. Nam at rutrum justo, vitae egestas dolor.',
         },
         {
             id: 4,
-            name: 'Meeting',
+            title: 'Meeting',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T10:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T10:30:00',
-
+            className: 'danger',
             description: 'Mauris ut mauris aliquam, fringilla sapien et, dignissim nisl. Pellentesque ornare velit non mollis fringilla.',
         },
         {
             id: 5,
-            name: 'Lunch',
+            title: 'Lunch',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T15:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T15:00:00',
-
+            className: 'info',
             description: 'Integer fermentum bibendum elit in egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         },
         {
             id: 6,
-            name: 'Conference',
+            title: 'Conference',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T21:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T21:30:00',
-
+            className: 'success',
             description:
                 'Curabitur facilisis vel elit sed dapibus. Nunc sagittis ex nec ante facilisis, sed sodales purus rhoncus. Donec est sapien, porttitor et feugiat sed, eleifend quis sapien. Sed sit amet maximus dolor.',
         },
         {
             id: 7,
-            name: 'Happy Hour',
+            title: 'Happy Hour',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T05:30:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T05:30:00',
-
+            className: 'info',
             description: ' odio lectus, porttitor molestie scelerisque blandit, hendrerit sed ex. Aenean malesuada iaculis erat, vitae blandit nisl accumsan ut.',
         },
         {
             id: 8,
-            name: 'Dinner',
+            title: 'Dinner',
             start: now.getFullYear() + '-' + getMonth(now) + '-12T20:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-13T20:00:00',
-
+            className: 'danger',
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 9,
-            name: 'Birthday Party',
+            title: 'Birthday Party',
             start: now.getFullYear() + '-' + getMonth(now) + '-27T20:00:00',
             end: now.getFullYear() + '-' + getMonth(now) + '-28T20:00:00',
-
+            className: 'success',
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 10,
-            name: 'New Talent reservation',
+            title: 'New Talent Event',
             start: now.getFullYear() + '-' + getMonth(now, 1) + '-24T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, 1) + '-27T22:20:20',
-
+            className: 'danger',
             description: 'Sed purus urna, aliquam et pharetra ut, efficitur id mi. Pellentesque ut convallis velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 11,
-            name: 'Other new',
+            title: 'Other new',
             start: now.getFullYear() + '-' + getMonth(now, -1) + '-13T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, -1) + '-16T22:20:20',
-
+            className: 'primary',
             description: 'Pellentesque ut convallis velit. Sed purus urna, aliquam et pharetra ut, efficitur id mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
         {
             id: 13,
-            name: 'Upcoming reservation',
+            title: 'Upcoming Event',
             start: now.getFullYear() + '-' + getMonth(now, 1) + '-15T08:12:14',
             end: now.getFullYear() + '-' + getMonth(now, 1) + '-18T22:20:20',
-
+            className: 'primary',
             description: 'Pellentesque ut convallis velit. Sed purus urna, aliquam et pharetra ut, efficitur id mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
     ]);
     const [isAddReservationModal, setIsAddReservationModal] = useState(false);
     const [minStartDate, setMinStartDate] = useState<any>('');
     const [minEndDate, setMinEndDate] = useState<any>('');
-    const defaultParams = {
-        id: '',
-        name: '',
-        phone: '',
-        partySize: '',
-        start: '',
-        end: '',
-        description: '',
-    };
-
+    const defaultParams = { id: null, title: '', start: '', end: '', description: '', type: 'primary' };
     const [params, setParams] = useState<any>(defaultParams);
-
     const dateFormat = (dt: any) => {
         dt = new Date(dt);
         const month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : dt.getMonth() + 1;
         const date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
         const hours = dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours();
         const mins = dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes();
-        return `${dt.getFullYear()}-${month}-${date}T${hours}:${mins}`;
+        dt = dt.getFullYear() + '-' + month + '-' + date + 'T' + hours + ':' + mins;
+        return dt;
     };
-
     const editReservation = (data: any = null) => {
-        const reset = JSON.parse(JSON.stringify(defaultParams));
-        setParams(reset);
-
+        let params = JSON.parse(JSON.stringify(defaultParams));
+        setParams(params);
         if (data) {
-            const obj = JSON.parse(JSON.stringify(data.reservation));
+            let obj = JSON.parse(JSON.stringify(data.event));
             setParams({
-                id: obj.id || '',
-                name: obj.name || '',
-                phone: obj.phone || '',
-                partySize: obj.partySize || '',
+                id: obj.id ? obj.id : null,
+                title: obj.title ? obj.title : null,
                 start: dateFormat(obj.start),
                 end: dateFormat(obj.end),
-                description: obj.extendedProps?.description || '',
+                type: obj.classNames ? obj.classNames[0] : 'primary',
+                description: obj.extendedProps ? obj.extendedProps.description : '',
             });
             setMinStartDate(new Date());
             setMinEndDate(dateFormat(obj.start));
@@ -167,75 +155,77 @@ const Calender = () => {
             setMinStartDate(new Date());
             setMinEndDate(new Date());
         }
-
         setIsAddReservationModal(true);
     };
-
     const editDate = (data: any) => {
-        editReservation({
+        let obj = {
             reservation: {
                 start: data.start,
                 end: data.end,
             },
-        });
+        };
+        editReservation(obj);
     };
 
     const saveReservation = () => {
-        if (!params.start || !params.end || !params.name || !params.partySize) {
-            showMessage('Please fill in all required fields.');
-            return;
+        if (!params.title) {
+            return true;
         }
-
-        const updatedReservations = [...reservations];
-
+        if (!params.start) {
+            return true;
+        }
+        if (!params.end) {
+            return true;
+        }
         if (params.id) {
-            const index = updatedReservations.findIndex((r) => r.id === parseInt(params.id));
-            if (index > -1) {
-                updatedReservations[index] = {
-                    ...updatedReservations[index],
-                    name: params.name,
-                    phone: params.phone,
-                    partySize: params.partySize,
-                    start: params.start,
-                    end: params.end,
-                    description: params.description,
-                };
-            }
+            //update event
+            let datareservation = reservations || [];
+            let reservation: any = datareservation.find((d: any) => d.id === parseInt(params.id));
+            reservation.title = params.title;
+            reservation.start = params.start;
+            reservation.end = params.end;
+            reservation.description = params.description;
+            reservation.className = params.type;
+
             setReservations([]);
             setTimeout(() => {
-                setReservations(updatedReservations);
+                setReservations(datareservation);
             });
         } else {
-            const maxId = reservations.length > 0 ? Math.max(...reservations.map((r) => r.id)) : 0;
-            const newReservation = {
-                id: maxId + 1,
-                name: params.name,
-                phone: params.phone,
-                partySize: params.partySize,
+            //add event
+            let maxReservationId = 0;
+            if (reservations) {
+                maxReservationId = reservations.reduce((max: number, character: any) => (character.id > max ? character.id : max), reservations[0].id);
+            }
+            maxReservationId = maxReservationId + 1;
+            let reservation = {
+                id: maxReservationId,
+                title: params.title,
                 start: params.start,
                 end: params.end,
                 description: params.description,
+                className: params.type,
             };
-            setReservations([...reservations, newReservation]);
+            let datareservation = reservations || [];
+            datareservation = datareservation.concat([reservation]);
+            setTimeout(() => {
+                setReservations(datareservation);
+            });
         }
-
         showMessage('Reservation has been saved successfully.');
         setIsAddReservationModal(false);
     };
-
-    const startDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const dateStr = e.target.value;
+    const startDateChange = (reservation: any) => {
+        const dateStr = reservation.target.value;
         if (dateStr) {
             setMinEndDate(dateFormat(dateStr));
             setParams({ ...params, start: dateStr, end: '' });
         }
     };
-
-    const changeValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setParams({ ...params, [name]: value });
+    const changeValue = (e: any) => {
+        const { value, id } = e.target;
+        setParams({ ...params, [id]: value });
     };
-
     const showMessage = (msg = '', type = 'success') => {
         const toast: any = Swal.mixin({
             toast: true,
@@ -257,6 +247,24 @@ const Calender = () => {
                 <div className="mb-4 flex items-center sm:flex-row flex-col sm:justify-between justify-center">
                     <div className="sm:mb-0 mb-4">
                         <div className="text-lg font-semibold ltr:sm:text-left rtl:sm:text-right text-center">Calendar</div>
+                        <div className="flex items-center mt-2 flex-wrap sm:justify-start justify-center">
+                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
+                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
+                                <div>Work</div>
+                            </div>
+                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
+                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-info"></div>
+                                <div>Travel</div>
+                            </div>
+                            <div className="flex items-center ltr:mr-4 rtl:ml-4">
+                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-success"></div>
+                                <div>Personal</div>
+                            </div>
+                            <div className="flex items-center">
+                                <div className="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"></div>
+                                <div>Important</div>
+                            </div>
+                        </div>
                     </div>
                     <button type="button" className="btn btn-primary" onClick={() => editReservation()}>
                         <IconPlus className="ltr:mr-2 rtl:ml-2" />
@@ -276,14 +284,14 @@ const Calender = () => {
                         dayMaxEvents={true}
                         selectable={true}
                         droppable={true}
-                        eventClick={(reservation: any) => editReservation(reservation)}
-                        select={(reservation: any) => editDate(reservation)}
+                        eventClick={(event: any) => editReservation(event)}
+                        select={(event: any) => editDate(event)}
                         events={reservations}
                     />
                 </div>
             </div>
 
-            {/* add reservation modal */}
+            {/* add event modal */}
             <Transition appear show={isAddReservationModal} as={Fragment}>
                 <Dialog as="div" onClose={() => setIsAddReservationModal(false)} open={isAddReservationModal} className="relative z-[51]">
                     <Transition.Child
@@ -318,96 +326,120 @@ const Calender = () => {
                                         <IconX />
                                     </button>
                                     <div className="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                        {params.id ? 'Edit Reservation' : 'Add Reservation'}
+                                        {params.id ? 'Edit Event' : 'Add Event'}
                                     </div>
                                     <div className="p-5">
                                         <form className="space-y-5">
                                             <div>
-                                                <label htmlFor="name">Name:</label>
+                                                <label htmlFor="title">Reservation Title :</label>
                                                 <input
-                                                    id="name"
+                                                    id="title"
                                                     type="text"
-                                                    name="name"
+                                                    name="title"
                                                     className="form-input"
-                                                    placeholder="Customer name"
-                                                    value={params.name || ''}
+                                                    placeholder="Enter Reservation Title"
+                                                    value={params.title || ''}
                                                     onChange={(e) => changeValue(e)}
                                                     required
                                                 />
+                                                <div className="text-danger mt-2" id="titleErr"></div>
                                             </div>
 
                                             <div>
-                                                <label htmlFor="phone">Phone:</label>
-                                                <input
-                                                    id="phone"
-                                                    type="tel"
-                                                    name="phone"
-                                                    className="form-input"
-                                                    placeholder="+1 (555) 123-4567"
-                                                    value={params.phone || ''}
-                                                    onChange={(e) => changeValue(e)}
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="partySize">Party Size:</label>
-                                                <input
-                                                    id="partySize"
-                                                    type="number"
-                                                    name="partySize"
-                                                    className="form-input"
-                                                    placeholder="e.g., 4"
-                                                    min={1}
-                                                    value={params.partySize || ''}
-                                                    onChange={(e) => changeValue(e)}
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="start">Date & Time:</label>
+                                                <label htmlFor="dateStart">From :</label>
                                                 <input
                                                     id="start"
                                                     type="datetime-local"
                                                     name="start"
                                                     className="form-input"
+                                                    placeholder="Reservation Start Date"
                                                     value={params.start || ''}
                                                     min={minStartDate}
-                                                    onChange={(e) => startDateChange(e)}
+                                                    onChange={(event: any) => startDateChange(event)}
                                                     required
                                                 />
+                                                <div className="text-danger mt-2" id="startDateErr"></div>
                                             </div>
-
                                             <div>
-                                                <label htmlFor="end">To:</label>
+                                                <label htmlFor="dateEnd">To :</label>
                                                 <input
                                                     id="end"
                                                     type="datetime-local"
                                                     name="end"
                                                     className="form-input"
+                                                    placeholder="Reservation End Date"
                                                     value={params.end || ''}
                                                     min={minEndDate}
                                                     onChange={(e) => changeValue(e)}
                                                     required
                                                 />
+                                                <div className="text-danger mt-2" id="endDateErr"></div>
                                             </div>
-
                                             <div>
-                                                <label htmlFor="description">Reservation Notes:</label>
+                                                <label htmlFor="description">Reservation Description :</label>
                                                 <textarea
                                                     id="description"
                                                     name="description"
-                                                    className="form-textarea min-h-[100px]"
-                                                    placeholder="e.g., Window seat preferred"
+                                                    className="form-textarea min-h-[130px]"
+                                                    placeholder="Enter Reservation Description"
                                                     value={params.description || ''}
                                                     onChange={(e) => changeValue(e)}
-                                                />
+                                                ></textarea>
                                             </div>
-
-                                            <div className="flex justify-end items-center mt-8">
+                                            <div>
+                                                <label>Badge:</label>
+                                                <div className="mt-3">
+                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                        <input
+                                                            type="radio"
+                                                            className="form-radio"
+                                                            name="type"
+                                                            value="primary"
+                                                            checked={params.type === 'primary'}
+                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
+                                                        />
+                                                        <span className="ltr:pl-2 rtl:pr-2">Work</span>
+                                                    </label>
+                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                        <input
+                                                            type="radio"
+                                                            className="form-radio text-info"
+                                                            name="type"
+                                                            value="info"
+                                                            checked={params.type === 'info'}
+                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
+                                                        />
+                                                        <span className="ltr:pl-2 rtl:pr-2">Travel</span>
+                                                    </label>
+                                                    <label className="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                        <input
+                                                            type="radio"
+                                                            className="form-radio text-success"
+                                                            name="type"
+                                                            value="success"
+                                                            checked={params.type === 'success'}
+                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
+                                                        />
+                                                        <span className="ltr:pl-2 rtl:pr-2">Personal</span>
+                                                    </label>
+                                                    <label className="inline-flex cursor-pointer">
+                                                        <input
+                                                            type="radio"
+                                                            className="form-radio text-danger"
+                                                            name="type"
+                                                            value="danger"
+                                                            checked={params.type === 'danger'}
+                                                            onChange={(e) => setParams({ ...params, type: e.target.value })}
+                                                        />
+                                                        <span className="ltr:pl-2 rtl:pr-2">Important</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-end items-center !mt-8">
                                                 <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddReservationModal(false)}>
                                                     Cancel
                                                 </button>
-                                                <button type="button" onClick={() => saveReservation()} className="btn btn-primary ml-4">
+                                                <button type="button" onClick={() => saveReservation()} className="btn btn-primary ltr:ml-4 rtl:mr-4">
                                                     {params.id ? 'Update Reservation' : 'Create Reservation'}
                                                 </button>
                                             </div>
