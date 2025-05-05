@@ -205,6 +205,8 @@ const Dashboard = () => {
     };
     return (
         <div>
+            <CallMinutes />
+
             <div className="pt-5">
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     <div className="panel h-full sm:col-span-2 lg:col-span-1">
@@ -443,7 +445,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <CallMinutes />
         </div>
     );
 };
