@@ -223,11 +223,9 @@ const Calender = () => {
                                     >
                                         <IconX />
                                     </button>
-                                    <div className="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                        {params.id ? 'Edit Reservation' : 'Add Reservation'}
-                                    </div>
+                                    <div className="text-lg font-medium   ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">{params.id ? 'Edit Reservation' : 'Add Reservation'}</div>
                                     <div className="p-5">
-                                        <form className="space-y-6 text-sm text-gray-700">
+                                        <form className="space-y-6 text-sm ">
                                             {/* Reservation Title */}
                                             <div>
                                                 <label htmlFor="title" className="block font-medium mb-1">
@@ -315,11 +313,7 @@ const Calender = () => {
 
                                             {/* Buttons */}
                                             <div className="flex justify-end gap-3 pt-4 border-t">
-                                                <button
-                                                    type="button"
-                                                    className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
-                                                    onClick={() => setIsAddReservationModal(false)}
-                                                >
+                                                <button type="button" className="px-4 py-2 rounded-md border border-gray-300  hover:bg-gray-100" onClick={() => setIsAddReservationModal(false)}>
                                                     Cancel
                                                 </button>
                                                 <button type="button" className="px-4 py-2 rounded-md bg-primary text-white hover:bg-primary-dark" onClick={() => saveReservation()}>
