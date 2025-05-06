@@ -54,7 +54,7 @@ const AccountSetting = () => {
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Premium Dining Experience</p>
                                     </div>
                                 </div>
-                                <button type="button" className="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-gray-700 mt-4 sm:mt-0">
+                                <button type="button" className=" text-white text-sm px-4 py-2 rounded-md bg-gray-700 mt-4 sm:mt-0">
                                     Edit Profile
                                 </button>
                             </div>
@@ -135,7 +135,7 @@ const AccountSetting = () => {
 
                                 {/* Save Button */}
                                 <div className="flex items-center justify-center">
-                                    <button type="submit" className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-xl w-full">
+                                    <button type="submit" className="bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl w-full">
                                         Save Changes
                                     </button>
                                 </div>
