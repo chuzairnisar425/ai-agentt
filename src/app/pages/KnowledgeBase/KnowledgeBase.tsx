@@ -26,10 +26,16 @@ const initialData = {
         questions: ['Are you celebrating anything?', 'Any dietary restrictions?'],
     },
 };
-const options = [
-    { value: 'orange', label: 'Orange' },
-    { value: 'white', label: 'White' },
-    { value: 'purple', label: 'Purple' },
+const toneOptions = [
+    { value: 'Professional', label: 'Professional' },
+    { value: 'Friendly', label: 'Friendly' },
+    { value: 'Casual', label: 'Casual' },
+];
+
+const windowOptions = [
+    { value: '7', label: '7 days in advance' },
+    { value: '14', label: '14 days in advance' },
+    { value: '30', label: '30 days in advance' },
 ];
 
 const KnowledgeBase = () => {
@@ -102,7 +108,7 @@ const KnowledgeBase = () => {
                             <p className="text-sm text-gray-500 dark:text-gray-400">{data.description}</p>
                         </div>
                     </div>
-                    <button type="button" className="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-gray-700 mt-4 sm:mt-0" onClick={() => toggleEdit('profile')}>
+                    <button type="button" className=" text-white text-sm px-4 py-2 rounded-md bg-gray-700 mt-4 sm:mt-0" onClick={() => toggleEdit('profile')}>
                         {editProfile ? 'Save Profile' : 'Edit Profile'}
                     </button>
                 </div>
@@ -131,10 +137,10 @@ const KnowledgeBase = () => {
             {/* Restaurant and AI Settings */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Restaurant Info */}
-                <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-md p-4 space-y-4">
+                <div className=" dark:bg-black border border-gray-200 dark:border-gray-700 rounded-md p-4 space-y-4">
                     <div className="flex justify-between items-center">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Restaurant Details</h3>
-                        <button className="bg-gray-900 text-white px-4 py-2 text-sm rounded-md hover:bg-gray-700" onClick={() => toggleEdit('restaurant')}>
+                        <button className=" text-white px-4 py-2 text-sm rounded-md bg-gray-700" onClick={() => toggleEdit('restaurant')}>
                             {editRestaurant ? 'Save' : 'Edit Restaurant Details'}
                         </button>
                     </div>
@@ -164,16 +170,16 @@ const KnowledgeBase = () => {
                 </div>
 
                 {/* AI Settings */}
-                <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-md p-4 space-y-4">
+                <div className="  border border-gray-200 dark:border-gray-700 rounded-md p-4 space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">AI Behavior Settings</h3>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tone of Voice</label>
-                        <Select defaultValue={options[0]} options={options} isSearchable={false} />
+                        <Select defaultValue={toneOptions[0]} options={toneOptions} isSearchable={false} />
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Reservation Window</label>
-                        <Select defaultValue={options[0]} options={options} isSearchable={false} />
+                        <Select defaultValue={windowOptions[0]} options={windowOptions} isSearchable={false} />
                     </div>
 
                     <div>
@@ -281,7 +287,7 @@ const KnowledgeBase = () => {
                         <div className="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
                             <button
                                 type="button"
-                                className={`p-4   w-full h-[60px] sm:h-[100px] lg:h-[50px] xl:h-[50px] md:h-[100px] flex items-center text-white-dark dark:bg-[#1b2e4b] `}
+                                className={`p-4   w-full h-[60px] sm:h-[100px] lg:h-[50px] xl:h-[50px] md:h-[100px] flex items-center text-white-dark `}
                                 onClick={() => togglePara('3')}
                             >
                                 Cancellation Policy
@@ -307,7 +313,7 @@ const KnowledgeBase = () => {
                         </div>
                     </div>
                 </div>
-                <button className="bg-gray-900 text-white px-4 py-2 text-sm rounded-md hover:bg-gray-700 mt-4">Add New Template</button>
+                <button className=" text-white px-4 py-2 text-sm rounded-md bg-gray-700 mt-4">Add New Template</button>
             </div>
         </div>
     );

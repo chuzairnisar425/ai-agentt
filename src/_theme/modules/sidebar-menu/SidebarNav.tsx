@@ -24,7 +24,7 @@ const SidebarNav: FC<PropsType> = (props: PropsType) => {
                         {/* Company Logo and Name */}
                         <div className="flex gap-2 justify-center items-center py-4 border-b border-gray-200">
                             <img src={sideBarImage} alt="Company Logo" className="w-16 h-16 object-contain" />
-                            <h1 className=" text-lg font-bold text-gray-800">Agent AI</h1>
+                            <h1 className=" text-lg font-bold">Agent AI</h1>
                             <div>
                                 <SidebarToggler />
                             </div>
