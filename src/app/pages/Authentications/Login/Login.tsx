@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../../_theme/themeConfigSlice';
+import { setPageTitle } from '../../../../_theme/themeConfigSlice';
 
 const Login: FC = () => {
     const dispatch = useDispatch();

@@ -1,19 +1,20 @@
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import FormGroup from '../../../app/shared/components/forms/FormGroup';
-import FormInput from '../../../app/shared/components/forms/FormInput';
-import FormLabel from '../../../app/shared/components/forms/FormLabel';
+import FormGroup from '../../../shared/components/forms/FormGroup';
+import FormInput from '../../../shared/components/forms/FormInput';
+import FormLabel from '../../../shared/components/forms/FormLabel';
 import registerImage from '/public/assets/images/auth/register.svg';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setPageTitle } from '../../../_theme/themeConfigSlice';
-
+import { setPageTitle } from '../../../../_theme/themeConfigSlice';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Register Account'));
     });
+    const navigate = useNavigate();
     const validation = useFormik({
         validateOnBlur: false,
         initialValues: {
@@ -40,6 +41,7 @@ const Register = () => {
         }),
         onSubmit: async (values) => {
             console.log('Form Submitted:', values);
+            navigate('/email-verify');
         },
     });
 

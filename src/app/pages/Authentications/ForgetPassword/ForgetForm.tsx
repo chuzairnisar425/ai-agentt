@@ -1,16 +1,21 @@
 import { useFormik } from 'formik';
 import { FC, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import IconArrowBackward from '../../../_theme/components/Icon/IconArrowBackward';
+import { Link, useNavigate } from 'react-router-dom';
+import IconArrowBackward from '../../../../_theme/components/Icon/IconArrowBackward';
 import * as Yup from 'yup';
-import { setPageTitle } from '../../../_theme/themeConfigSlice';
+import { setPageTitle } from '../../../../_theme/themeConfigSlice';
 import { useDispatch } from 'react-redux';
+import { showNotification } from '@mantine/notifications';
+import IconCheck from '../../../../_theme/components/Icon/IconCheck';
 
 const ForgetForm: FC = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     useEffect(() => {
-        dispatch(setPageTitle('Forgot passoword'));
-    });
+        dispatch(setPageTitle('Forgot password'));
+    }, [dispatch]);
+
     const validation = useFormik({
         validateOnBlur: false,
         initialValues: {
@@ -21,9 +26,21 @@ const ForgetForm: FC = () => {
         }),
         onSubmit: async (values) => {
             try {
-                console.log('Form values', values);
+                // Simulate API call
+                console.log('Sending reset email:', values.email);
+                showNotification({
+                    title: 'Success',
+                    message: 'Reset instructions sent to your email',
+                    color: 'green',
+                    icon: <IconCheck />,
+                });
+                navigate('/auth/reset-email-sent');
             } catch (error) {
-                console.error('Error sending password reset email:', error);
+                showNotification({
+                    title: 'Error',
+                    message: 'Failed to send reset email',
+                    color: 'red',
+                });
             } finally {
                 validation.setSubmitting(false);
             }
@@ -33,7 +50,6 @@ const ForgetForm: FC = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
             <div className="bg-white rounded-xl shadow-lg flex flex-col md:flex-row w-full max-w-6xl overflow-hidden">
-                {/* Left section (Hidden on small screens) */}
                 <div className="hidden md:flex w-1/2 bg-gray-200 flex-col items-center justify-center p-10">
                     <div className="text-center">
                         <img src="/public/assets/images/auth/forgotpassword.png" width={200} alt="" />
@@ -42,10 +58,9 @@ const ForgetForm: FC = () => {
                     </div>
                 </div>
 
-                {/* Right section (form) */}
                 <div className="w-full md:w-1/2 flex items-center justify-center p-6 sm:p-10">
                     <div className="w-full max-w-md ">
-                        <div className="flex  justify-center mb-5">
+                        <div className="flex justify-center mb-5">
                             <img src="/public/assets/images/logo.svg" alt="" />
                         </div>
                         <h1 className="text-center text-2xl font-normal mb-4">AI Agent</h1>

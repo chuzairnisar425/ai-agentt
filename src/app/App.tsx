@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from './store';
 import store from './store';
-import { ToastContainer } from 'react-toastify';
+// import { Notifications } from '@mantine/notifications';
 import { toggleAnimation, toggleLayout, toggleMenu, toggleNavbar, toggleRTL, toggleSemidark, toggleTheme } from '../_theme/themeConfigSlice';
 
 function App({ children }: PropsWithChildren) {
@@ -21,7 +21,8 @@ function App({ children }: PropsWithChildren) {
 
     return (
         <>
-            <ToastContainer position="top-right" autoClose={3000} />
+            {/* <Notifications position="top-center" /> */}
+
             <div
                 className={`${(store.getState().themeConfig.sidebar && 'toggle-sidebar') || ''} ${themeConfig.menu} ${themeConfig.layout} ${
                     themeConfig.rtlClass
